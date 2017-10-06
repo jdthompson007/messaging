@@ -9,11 +9,19 @@ To build run gradle (or gradlew.bat or gradlew) build
 docker login and enter username/password to authenticate docker hub
 gradle buildDocker -Ppush to create docker image in docker hub
 
-docker-compose up 						run from root of consumer or producer to run the RabbitMQ via the docker-compose.yml file
-docker run jdthompson007/consumer		will run the consumer
-docker run jdthompson007/producer		will place message son the queue
+docker-compose up 																				run from root of consumer or producer to run the RabbitMQ via the docker-compose.yml file
+docker run jdthompson007/consumer --spring.rabbitmq.host=<rabbitmq server ip address>          	will run the consumer
+docker run jdthompson007/producer --spring.rabbitmq.host=<rabbitmq server ip address>			will place messages on the queue
 
-NB Known issue.  Will not work with localhost when running in 3 separate containers.  
+application.properties file in src/main/resources now has 
 
-application.properties file in src/main/resources now has host address of 192.168.99.100, this will need to change in another env
+spring.rabbitmq.host=localhost
+
+this must be overridden in the docker environment
 (and will hence require another docker image upload for consumer and producer)
+
+Useful command for killing off all docker containers (leaving consumers hanging around will mess up the stats)
+docker rm -f $(docker ps -a -q) 
+
+docker-machine ip			gets docker ip address
+docker-machine ip dev		gets docker ip address of dev

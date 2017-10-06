@@ -39,13 +39,15 @@ public class Runner implements CommandLineRunner {
         
     	List<PhoneMessage> phoneMessages = new ArrayList<>();
     	
-    	if (args.length > 0) {
-    		PhoneMessage phoneMessage = new PhoneMessage(args[0]);
-    		phoneMessages.add(phoneMessage);
-    	} else {
-    		phoneMessages = getMessages();
-    	}
+//    	if (args.length > 0) {
+//    		PhoneMessage phoneMessage = new PhoneMessage(args[0]);
+//    		phoneMessages.add(phoneMessage);
+//    	} else {
+//    		phoneMessages = getMessages();
+//    	}
 
+    	phoneMessages = getMessages();
+    	
     	for (PhoneMessage phoneMessage: phoneMessages) {
         	String json = jsonService.convertMessageToJson(phoneMessage);
         	System.out.println("Sending message...");
