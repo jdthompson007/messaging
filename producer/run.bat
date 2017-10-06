@@ -1,0 +1,1 @@
+java -jar build/libs/producer-1.0.0.jar %1
