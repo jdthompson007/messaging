@@ -9,9 +9,11 @@ To build run gradle (or gradlew.bat or gradlew) build
 docker login and enter username/password to authenticate docker hub
 gradle buildDocker -Ppush to create docker image in docker hub
 
-docker-compose up 																				run from root of consumer or producer to run the RabbitMQ via the docker-compose.yml file
-docker run jdthompson007/consumer --spring.rabbitmq.host=<rabbitmq server ip address>          	will run the consumer
-docker run jdthompson007/producer --spring.rabbitmq.host=<rabbitmq server ip address>			will place messages on the queue
+| Command                                                                                | Comment
+-----------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------
+|docker-compose up 																		 | run from root of consumer or producer to run the RabbitMQ via the docker-compose.yml file
+|docker run jdthompson007/consumer --spring.rabbitmq.host=<rabbitmq server ip address>   | will run the consumer
+|docker run jdthompson007/producer --spring.rabbitmq.host=<rabbitmq server ip address>	 | will place messages on the queue
 
 application.properties file in src/main/resources now has 
 
