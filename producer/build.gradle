@@ -4,6 +4,7 @@ buildscript {
     }
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:1.5.7.RELEASE")
+        classpath "se.transmode.gradle:gradle-docker:1.2"               
     }
 }
 
@@ -11,6 +12,7 @@ apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'idea'
 apply plugin: 'org.springframework.boot'
+apply plugin: 'docker'
 
 jar {
     baseName = 'producer'
@@ -32,3 +34,17 @@ dependencies {
 task runTests(type: Test) {
     exclude 'producer.integration/**'
 }
+
+task buildDocker(type: Docker) {
+  baseImage = 'develar/java:latest'
+  push = project.hasProperty('push')
+  tag = 'jdthompson007/producer'
+  addFile {
+    from jar
+    rename {'producer.jar'}
+  }
+  entryPoint(['java', '-Dsome-param=hello', '-jar', '/producer.jar'])
+  exposePort(5672)
+}
+
+buildDocker.dependsOn(build)
