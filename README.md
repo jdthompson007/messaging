@@ -12,8 +12,8 @@ gradle buildDocker -Ppush to create docker image in docker hub
 | Command                                                                                | Comment
 -----------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------
 |docker-compose up 																		 | run from root of consumer or producer to run the RabbitMQ via the docker-compose.yml file
-|docker run jdthompson007/consumer --spring.rabbitmq.host=<rabbitmq server ip address>   | will run the consumer
-|docker run jdthompson007/producer --spring.rabbitmq.host=<rabbitmq server ip address>	 | will place messages on the queue
+|docker run jdthompson007/consumer --spring.rabbitmq.host=[rabbitmq server ip address]   | will run the consumer
+|docker run jdthompson007/producer --spring.rabbitmq.host=[rabbitmq server ip address]	 | will place messages on the queue
 
 application.properties file in src/main/resources now has 
 
