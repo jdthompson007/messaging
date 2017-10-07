@@ -13,5 +13,10 @@ public class JsonService {
 		ObjectMapper mapper = new ObjectMapper();
 		return mapper.writeValueAsString(phoneMessage);
 	}	
+	
+	public PhoneMessage getPhoneMessage(String phoneMessage) throws Exception {
+		ObjectMapper mapper = new ObjectMapper();		
+		return mapper.readValue(phoneMessage, PhoneMessage.class);
+	}	
 }
 

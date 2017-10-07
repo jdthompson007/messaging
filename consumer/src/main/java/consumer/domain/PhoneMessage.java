@@ -1,5 +1,7 @@
 package consumer.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 public class PhoneMessage {
 
 	// must begin with a plus symbol followed by 1 to 9, then 1 to 14 digits (0-9)
@@ -36,7 +38,8 @@ public class PhoneMessage {
 	public void setTelephoneNumber(String telephoneNumber) {
 		this.telephoneNumber = telephoneNumber;
 	}
-	
+
+	@JsonIgnore
 	public boolean isValidNumber() {
 		return telephoneNumber.matches(VALID_PHONE_NUMBER_REGEX);
 	}

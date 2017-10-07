@@ -14,7 +14,7 @@ import consumer.services.JsonService;
 public class Receiver {
 
 	private static Logger logger = Logger.getLogger(Receiver.class);	
-	
+
 	@Autowired
 	private ConsumerService consumerService;
 	@Autowired	
@@ -38,5 +38,12 @@ public class Receiver {
     public CountDownLatch getLatch() {
         return latch;
     }
+    
+	public void setConsumerService(ConsumerService consumerService) {
+		this.consumerService = consumerService;
+	}
 
+	public void setJsonService(JsonService jsonService) {
+		this.jsonService = jsonService;
+	}
 }
