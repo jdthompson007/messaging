@@ -1,9 +1,10 @@
 package consumer.domain;
 
+import java.util.Random;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class PhoneMessage {
-
 	// must begin with a plus symbol followed by 1 to 9, then 1 to 14 digits (0-9)
 	private static final String VALID_PHONE_NUMBER_REGEX = "\\+[1-9]\\d{1,14}";
 	
@@ -19,7 +20,7 @@ public class PhoneMessage {
 	}
 
 	public PhoneMessage(String telephoneNumber) {	
-		this.id = System.currentTimeMillis(); 
+		this.id = getRandomId(); 
 		this.telephoneNumber = telephoneNumber;
 	}
 	
@@ -43,4 +44,15 @@ public class PhoneMessage {
 	public boolean isValidNumber() {
 		return telephoneNumber.matches(VALID_PHONE_NUMBER_REGEX);
 	}
+	
+	@JsonIgnore
+	private Long getRandomId() {
+		Random random = new Random();		
+		String s = "";
+		for (int i = 0; i < 10; i++) {
+			s = s + random.nextInt(10);
+		}
+		
+		return new Long(s);		
+	}		
 }

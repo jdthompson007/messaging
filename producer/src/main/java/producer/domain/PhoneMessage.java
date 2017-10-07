@@ -1,5 +1,9 @@
 package producer.domain;
 
+import java.util.Random;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 public class PhoneMessage {
 
 	private Long id;
@@ -14,7 +18,7 @@ public class PhoneMessage {
 	}
 
 	public PhoneMessage(String telephoneNumber) {	
-		this.id = System.currentTimeMillis(); 
+		this.id = getRandomId(); 
 		this.telephoneNumber = telephoneNumber;
 	}
 	
@@ -33,4 +37,15 @@ public class PhoneMessage {
 	public void setTelephoneNumber(String telephoneNumber) {
 		this.telephoneNumber = telephoneNumber;
 	}
+	
+	@JsonIgnore
+	private Long getRandomId() {
+		Random random = new Random();		
+		String s = "";
+		for (int i = 0; i < 10; i++) {
+			s = s + random.nextInt(10);
+		}
+		
+		return new Long(s);		
+	}	
 }
